@@ -26,4 +26,37 @@
 		}
    })
 })
-						</script>
+</script>
+	<div class="contentb-box-table">
+						<table class="" style="min-width:1080px;">
+							<thead>
+								<tr>
+									<th>序号</th>
+									<th>采购编号</th>
+									<th>药品名称</th>
+									<th>药品分类</th>
+									<th>生产厂家</th>
+									<th>药品规格</th>
+									<th>库存</th>
+									<th>有效期</th>
+								</tr>
+							</thead>
+							<tbody class="tabletbody1">
+								{foreach  $numdrugs as $v}
+								<tr>
+									<td>{$v['id']}</td>
+									<td>{$v['purchase_id']}</td>
+									<td>{$v['drug_name']}</td>
+									<td>{if condition="$vo['drug_class_id'] eq 1"}中药处方{else/}西药处方{/if}</td>
+									<td>{$v['manufacturer_name']}</td>
+									<td>{$v['drug_spec']}</td>
+									<td>{$v['drug_stock']}</td>
+									<td>{$v['validity_date']}</td>
+								</tr>
+								{/foreach}
+							</tbody>
+						</table>
+						{$numdrugs->render()}
+					</div>
+				</div>
+			</div>
