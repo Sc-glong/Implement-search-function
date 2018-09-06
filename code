@@ -1,0 +1,29 @@
+<script> 
+						    $("#search1").blur(function(){
+						   var text= $(this).val();
+						   var tboy=$(".tabletbody1");
+						   var str='';
+						   $.ajax({
+								url:"{:url('Drug/kucunajax')}",
+								data:"text="+text,
+								type:"post",
+								success:function(msg){
+								$.each(msg.data,function(k,v){ 
+									var purchase_id=v.purchase_id == null ? '':v.purchase_id;
+									var drug_name=v.drug_name == null ? '':v.drug_name;
+									var drug_class_id=v.drug_class_id == 1 ? '中药处方':'西药处方';
+									var manufacturer_name=v.manufacturer_name == null ? '':v.manufacturer_name;
+									var drug_spec=v.drug_spec == null ? '':v.drug_spec;
+									var drug_stock=v.drug_stock == null ? '':v.drug_stock;
+									var validity_date=v.validity_date == null ? '':v.validity_date;
+								
+					
+								   str+="<tr><td>"+v.id+"</td><td>"+purchase_id+"</td><td>"+drug_name+
+									"</td><td>"+drug_class_id+"</td><td>"+manufacturer_name+"</td><td>"+drug_spec+"</td><td>"+drug_stock+"</td><td>"
+										+validity_date+"</td></tr>";
+								 })
+								 tboy.html(str);
+								}
+						   })
+						})
+						</script>
